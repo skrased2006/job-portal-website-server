@@ -49,22 +49,13 @@ app.post('/applitions',async(req,res)=>{
   res.send(result);
   
 })
-app.get('/applitions', async (req, res) => {
-  const email = req.query.email;
-
-  if (!email) {
-    return res.status(400).send({ error: "Email query is required" });
-  }
-
-  const query = { email: email };
-
-  try {
-    const result = await applitionCollection.find(query).toArray();
-    res.send(result);
-  } catch (error) {
-    res.status(500).send({ error: 'Something went wrong' });
-  }
-});
+app.get('/applitions',async(req,res)=>{
+  const  email=req.query.body;
+  const query = { 
+applition: email };
+const result = await applitionCollection.find(query).toArray();
+    res.send(result)
+})
 
 
 
